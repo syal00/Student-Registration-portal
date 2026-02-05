@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid px-4">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3" style="color: #0d6efd;">
+            <i class="bi bi-mortarboard-fill me-3"></i>Welcome to Academic Management System
+        </h1>
+        <p class="lead text-muted">Manage courses, academic records, and employees with ease</p>
+    </div>
+    
+    <div class="row g-4 mt-2">
+        <div class="col-md-4">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-book-fill" style="font-size: 3rem; color: #0d6efd;"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3">Courses</h4>
+                    <p class="card-text text-muted mb-4">Manage course information, descriptions, and fees</p>
+                    <a asp-controller="Courses" asp-action="Index" class="btn btn-primary-custom btn-lg w-100">
+                        <i class="bi bi-arrow-right-circle me-2"></i>View Courses
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-clipboard-data-fill" style="font-size: 3rem; color: #198754;"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3">Academic Records</h4>
+                    <p class="card-text text-muted mb-4">View and edit student grades and academic performance</p>
+                    <a asp-controller="AcademicRecords" asp-action="Index" class="btn btn-primary-custom btn-lg w-100">
+                        <i class="bi bi-arrow-right-circle me-2"></i>View Records
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 feature-card">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-people-fill" style="font-size: 3rem; color: #6c757d;"></i>
+                    </div>
+                    <h4 class="card-title fw-bold mb-3">Employees</h4>
+                    <p class="card-text text-muted mb-4">Manage employee information, roles, and access</p>
+                    <a asp-controller="Employees" asp-action="Index" class="btn btn-primary-custom btn-lg w-100">
+                        <i class="bi bi-arrow-right-circle me-2"></i>View Employees
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
