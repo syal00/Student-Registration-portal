@@ -1,0 +1,102 @@
+@model IEnumerable<CourseLedger.DataAccess.Course>
+
+@{
+    ViewData["Title"] = "Courses";
+    var hasItems = Model.Any();
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="bi bi-book-fill me-2"></i>Courses</h1>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>Create New Course
+    </a>
+</div>
+
+@if (!hasItems)
+{
+    ViewData["EmptyIcon"] = "bi-book";
+    ViewData["EmptyMessage"] = "No courses yet.";
+    ViewData["EmptyActionText"] = "Create Your First Course";
+    ViewData["EmptyActionController"] = "Courses";
+    @await Html.PartialAsync("_EmptyState")
+}
+else
+{
+    <div class="card shadow-sm border-0 table-desktop">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Title)</th>
+                            <th>@Html.DisplayNameFor(model => model.Description)</th>
+                            <th>@Html.DisplayNameFor(model => model.HoursPerWeek)</th>
+                            <th>@Html.DisplayNameFor(model => model.FeeBase)</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@Html.DisplayFor(modelItem => item.Title)</strong>
+                                    <br />
+                                    <small class="text-muted mono-id">@Html.DisplayFor(modelItem => item.Code)</small>
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td>
+                                    <span class="badge bg-info text-dark">@Html.DisplayFor(modelItem => item.HoursPerWeek) hrs/week</span>
+                                </td>
+                                <td><strong>$@Html.DisplayFor(modelItem => item.FeeBase)</strong></td>
+                                <td class="text-end">
+                                    <a asp-action="Details" asp-route-id="@item.Code" class="btn btn-sm btn-outline-info me-1">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Code" class="btn btn-sm btn-outline-primary me-1">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                                            data-delete-title="Delete Course"
+                                            data-delete-action="@Url.Action("Delete", new { id = item.Code })"
+                                            data-delete-message="Are you sure you want to delete @item.Title? This will also delete all associated academic records."
+                                            data-delete-fields='@Html.Raw(System.Text.Json.JsonSerializer.Serialize(new Dictionary<string, string> { ["id"] = item.Code }))'>
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-card-list">
+        @foreach (var item in Model)
+        {
+            <div class="mobile-data-card">
+                <strong>@item.Title</strong>
+                <div class="text-muted mono-id small">@item.Code</div>
+                <div class="mt-2 small">@item.Description</div>
+                <div class="mt-2">
+                    <span class="badge bg-info text-dark">@item.HoursPerWeek hrs/week</span>
+                    <strong class="ms-2">$@item.FeeBase</strong>
+                </div>
+                <div class="card-actions">
+                    <a asp-action="Details" asp-route-id="@item.Code" class="btn btn-sm btn-outline-info"><i class="bi bi-eye"></i></a>
+                    <a asp-action="Edit" asp-route-id="@item.Code" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>
+                    <button type="button" class="btn btn-sm btn-outline-danger"
+                            data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
+                            data-delete-title="Delete Course"
+                            data-delete-action="@Url.Action("Delete", new { id = item.Code })"
+                            data-delete-message="Are you sure you want to delete @item.Title? This will also delete all associated academic records."
+                            data-delete-fields='@Html.Raw(System.Text.Json.JsonSerializer.Serialize(new Dictionary<string, string> { ["id"] = item.Code }))'>
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+}

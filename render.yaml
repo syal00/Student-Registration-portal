@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: courseledger
+    runtime: dotnet
+    plan: free
+    buildCommand: dotnet publish CourseLedger/CourseLedger.csproj -c Release -o ./publish
+    startCommand: dotnet ./publish/CourseLedger.dll
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        sync: false

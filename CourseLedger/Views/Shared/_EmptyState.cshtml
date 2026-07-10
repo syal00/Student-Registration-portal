@@ -1,0 +1,19 @@
+@* Empty state partial. Set ViewData["EmptyIcon"], ["EmptyMessage"], ["EmptyActionText"], ["EmptyActionController"], ["EmptyActionName"] *@
+@{
+    var icon = ViewData["EmptyIcon"]?.ToString() ?? "bi-inbox";
+    var message = ViewData["EmptyMessage"]?.ToString() ?? "No items yet.";
+    var actionText = ViewData["EmptyActionText"]?.ToString();
+    var controller = ViewData["EmptyActionController"]?.ToString();
+    var action = ViewData["EmptyActionName"]?.ToString() ?? "Create";
+}
+
+<div class="empty-state text-center py-5">
+    <i class="bi @icon empty-state-icon"></i>
+    <p class="text-muted mt-3 mb-4">@message</p>
+    @if (!string.IsNullOrEmpty(actionText) && !string.IsNullOrEmpty(controller))
+    {
+        <a asp-controller="@controller" asp-action="@action" class="btn btn-primary-custom">
+            <i class="bi bi-plus-circle me-2"></i>@actionText
+        </a>
+    }
+</div>
