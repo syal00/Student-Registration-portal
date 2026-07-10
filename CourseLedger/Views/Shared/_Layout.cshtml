@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>@ViewData["Title"] - CourseLedger</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,17 +14,17 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm mb-3 mb-md-4">
+            <div class="container-fluid app-container">
                 <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-journal-bookmark-fill me-2"></i>CourseLedger
+                    <i class="bi bi-journal-bookmark-fill me-2"></i><span class="brand-text">CourseLedger</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-lg-auto gap-lg-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
                                 <i class="bi bi-house-door me-1"></i>Home
@@ -60,14 +60,14 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid px-4">
-        <main role="main" class="pb-5">
+    <div class="container-fluid app-container px-3 px-sm-4">
+        <main role="main" class="pb-4 pb-md-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="bg-light border-top mt-5 py-4">
-        <div class="container">
+    <footer class="bg-light border-top mt-4 mt-md-5 py-3 py-md-4">
+        <div class="container-fluid app-container px-3 px-sm-4">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
                     <p class="mb-0 text-muted">&copy; 2025 CourseLedger. All rights reserved.</p>

@@ -5,7 +5,7 @@
     var hasItems = Model.Any();
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="page-header">
     <h1><i class="bi bi-people-fill me-2"></i>Employees</h1>
     <a asp-action="Create" class="btn btn-primary">
         <i class="bi bi-plus-circle me-2"></i>Create New Employee
@@ -39,13 +39,13 @@ else
                         {
                             <tr>
                                 <td><strong>@Html.DisplayFor(modelItem => item.Name)</strong></td>
-                                <td><span class="badge bg-info text-dark mono-id">@Html.DisplayFor(modelItem => item.UserName)</span></td>
+                                <td><span class="badge badge-info mono-id">@Html.DisplayFor(modelItem => item.UserName)</span></td>
                                 <td>
                                     @if (item.Roles != null && item.Roles.Any())
                                     {
                                         @foreach (var role in item.Roles)
                                         {
-                                            <span class="badge bg-secondary me-1">@role.Role1</span>
+                                            <span class="badge badge-role me-1">@role.Role1</span>
                                         }
                                     }
                                     else
@@ -54,10 +54,10 @@ else
                                     }
                                 </td>
                                 <td class="text-end">
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-action btn-action-edit me-1">
                                         <i class="bi bi-pencil"></i>
                                     </a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                    <button type="button" class="btn btn-sm btn-action btn-action-delete"
                                             data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
                                             data-delete-title="Delete Employee"
                                             data-delete-action="@Url.Action("Delete", new { id = item.Id })"
@@ -79,13 +79,13 @@ else
         {
             <div class="mobile-data-card">
                 <strong>@item.Name</strong>
-                <div class="mt-1"><span class="badge bg-info text-dark mono-id">@item.UserName</span></div>
+                <div class="mt-1"><span class="badge badge-info mono-id">@item.UserName</span></div>
                 <div class="mt-2">
                     @if (item.Roles != null && item.Roles.Any())
                     {
                         @foreach (var role in item.Roles)
                         {
-                            <span class="badge bg-secondary me-1">@role.Role1</span>
+                            <span class="badge badge-role me-1">@role.Role1</span>
                         }
                     }
                     else
@@ -94,8 +94,8 @@ else
                     }
                 </div>
                 <div class="card-actions">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>
-                    <button type="button" class="btn btn-sm btn-outline-danger"
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-action btn-action-edit"><i class="bi bi-pencil"></i></a>
+                    <button type="button" class="btn btn-sm btn-action btn-action-delete"
                             data-bs-toggle="modal" data-bs-target="#deleteConfirmModal"
                             data-delete-title="Delete Employee"
                             data-delete-action="@Url.Action("Delete", new { id = item.Id })"
